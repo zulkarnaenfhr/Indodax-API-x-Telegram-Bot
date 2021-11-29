@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
+/* font-family: 'Outfit', sans-serif; */
+
+#homeBrand {
+    font-family: "Outfit", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    color: #5792cf;
+}
+body {
+    background-color: #b8c6db;
+    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+    /* background-color: #f9d29d;
+    background-image: linear-gradient(315deg, #f9d29d 0%, #ffd8cb 74%); */
+}
+#homeBrand:hover {
+    color: #6b8aaf;
+}
+
+#navbar-menu {
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+#navbar-menu:hover {
+    color: #5792cf;
+}
+
+.liveMarket-Title {
+    font-family: "Outfit", sans-serif;
+    font-size: 27px;
+}
+
+.liveMarket-Time{
+    font-family: "Outfit", sans-serif;
+    font-size: 18px;
+}
+
+.spaceCaptButton {
+    background-color: rgb(255, 241, 241);
+    border-radius: 20px;
+}
+
+.spaceCaptButton:hover {
+    color: white;
+    background-color: rgb(200, 238, 253);
+}
+
+table {
+    text-align: center;
+    width: 100%;
+}
+
+.tableOutput tr th {
+    border: 1px solid black;
+}
+
+table tr:nth-child(odd) th {
+    background-color: #bdd4e7;
+}
+
+.tableNomor {
+    width: 50px;
+}
+
+.tableAsset {
+    width: 100px;
+}
+.tablePair {
+    width: 100px;
+}
+.tableLast {
+    width: 200px;
+}
+.tableHigh {
+    width: 200px;
+}
+.tableLow {
+    width: 200px;
+}
+.tableLastLow {
+    width: 200px;
+}
+.tableLastHigh {
+    width: 200px;
+}
+
+.tableBawah {
+    height: 30px;
+}
+
+.indicatorRightSection {
+    display: flex;
+    justify-content: right;
+}
+
+#footer {
+    margin-top: 3rem;
+    height: 50px;
+}
+
+.textFooter {
+    text-align: center;
+    font-size: 17px;
+}
+
+.textFooter span {
+    font-weight: 600;
+    color: brown;
+}
