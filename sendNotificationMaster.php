@@ -111,9 +111,9 @@ kirimTelegram($msg7);
 kirimTelegram($msg8);
 
 kirimTelegram("halo");
-// echo $panjangData;
-// echo    "<script>
-//             document.location.href = 'indodaxAPIxTelegramHomepage.php'
-//         </script>";
+echo $panjangData;
+echo    "<script>
+            document.location.href = 'indodaxAPIxTelegramHomepage.php'
+        </script>";
 ?>
 
