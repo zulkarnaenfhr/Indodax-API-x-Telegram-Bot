@@ -45,7 +45,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a id="navbar-menu" class="nav-link active" aria-current="page" href="sendNotificationMaster.php">Message status bot telegram</a>
+                        <a id="navbar-menu" class="nav-link active" aria-current="page"
+                            href="sendNotificationMaster.php">Message status bot telegram</a>
                     </li>
                 </ul>
             </div>
@@ -72,13 +73,6 @@
                         </div>
                     </div>
                     <table class="tableOutput">
-                        <div class="pagination">
-                            <?php for($x = 1; $x <= $total_page; $x++): ?>
-                                <a id="active<?php echo $x?>" href='cekPagination.php?page=<?php echo $x; ?>'>
-                                    <?php echo $x; ?>
-                                </a>
-                            <?php endfor; ?>
-                        </div>
                         <thead>
                             <tr>
                                 <th class="tableNomor">No</th>
@@ -121,8 +115,15 @@
                         </tbody>
                         <?php 
                             }
-                        ?>        
+                        ?>
                     </table>
+                    <div class="pagination">
+                        <?php for($x = 1; $x <= $total_page; $x++): ?>
+                        <a id="active<?php echo $x?>" href='?page=<?php echo $x; ?>'>
+                            <?php echo $x; ?>
+                        </a>
+                        <?php endfor; ?>
+                    </div>
                 </div>
             </div>
         </section>
@@ -133,9 +134,6 @@
 
     <!-- Optional JavaScript; choose one of the two! -->
 
-    <?php 
-        $page = !isset($_GET['page']) ? 1 : $_GET['page'];
-    ?>
     <script>
         var x = document.getElementById("active<?php echo $page?>");
         x.classList.add("active");
