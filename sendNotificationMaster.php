@@ -20,18 +20,8 @@ function kirimTelegram($pesan){
     return $result;
 }
 $kirimPesan = json_decode(file_get_contents("https://indodax.com/api/tickers"), TRUE); 
-$nomor = 0;
-// foreach ($data['tickers'] as $key => $value) {
-//     $nomor = $nomor++;
-//     $asset = $key;
-//     $last = $value['last'];
-//     $high = $value['high'];
-//     $low = $value['low'];
-//     $sell = $value['sell'];
-//     $buy = $value['buy'];
-//     $ma .="Nomor : ".$nomor."%0a";
-// }
-for ($i=0; $i < 5; $i++) { 
+$panjangData = count($data);
+for ($i=0; $i < ($panjangData*1/8); $i++) { 
     $nomor = $i+1;
     $asset = array_keys($data)[$i];
     $last = $data[$asset]['last'];
@@ -41,10 +31,89 @@ for ($i=0; $i < 5; $i++) {
     $buy = $data[$asset]['buy'];
     $msg1 .= "Nomor : ".$nomor."%0aAsset : ".$asset."%0aLast Price : ".$last."%0aHigh 24H : ".$high."%0aLow 24H : ".$low."%0aSell : ".$sell."%0aBuy : ".$buy."%0a%0a";
 }
+for ($i= floor(($panjangData*1/8))+1 ; $i < floor(($panjangData*2/8)); $i++) { 
+    $nomor = $i+1;
+    $asset = array_keys($data)[$i];
+    $last = $data[$asset]['last'];
+    $high = $data[$asset]['high'];
+    $low = $data[$asset]['low'];
+    $sell = $data[$asset]['sell'];
+    $buy = $data[$asset]['buy'];
+    $msg2 .= "Nomor : ".$nomor."%0aAsset : ".$asset."%0aLast Price : ".$last."%0aHigh 24H : ".$high."%0aLow 24H : ".$low."%0aSell : ".$sell."%0aBuy : ".$buy."%0a%0a";
+}
+for ($i= floor(($panjangData*2/8))+1 ; $i < floor(($panjangData*3/8)); $i++) { 
+    $nomor = $i+1;
+    $asset = array_keys($data)[$i];
+    $last = $data[$asset]['last'];
+    $high = $data[$asset]['high'];
+    $low = $data[$asset]['low'];
+    $sell = $data[$asset]['sell'];
+    $buy = $data[$asset]['buy'];
+    $msg3 .= "Nomor : ".$nomor."%0aAsset : ".$asset."%0aLast Price : ".$last."%0aHigh 24H : ".$high."%0aLow 24H : ".$low."%0aSell : ".$sell."%0aBuy : ".$buy."%0a%0a";
+}
+for ($i= floor(($panjangData*3/8))+1 ; $i < floor(($panjangData*4/8)); $i++) { 
+    $nomor = $i+1;
+    $asset = array_keys($data)[$i];
+    $last = $data[$asset]['last'];
+    $high = $data[$asset]['high'];
+    $low = $data[$asset]['low'];
+    $sell = $data[$asset]['sell'];
+    $buy = $data[$asset]['buy'];
+    $msg4 .= "Nomor : ".$nomor."%0aAsset : ".$asset."%0aLast Price : ".$last."%0aHigh 24H : ".$high."%0aLow 24H : ".$low."%0aSell : ".$sell."%0aBuy : ".$buy."%0a%0a";
+}
+for ($i= floor(($panjangData*4/8))+1 ; $i < floor(($panjangData*5/8)); $i++) { 
+    $nomor = $i+1;
+    $asset = array_keys($data)[$i];
+    $last = $data[$asset]['last'];
+    $high = $data[$asset]['high'];
+    $low = $data[$asset]['low'];
+    $sell = $data[$asset]['sell'];
+    $buy = $data[$asset]['buy'];
+    $msg5 .= "Nomor : ".$nomor."%0aAsset : ".$asset."%0aLast Price : ".$last."%0aHigh 24H : ".$high."%0aLow 24H : ".$low."%0aSell : ".$sell."%0aBuy : ".$buy."%0a%0a";
+}
+for ($i= floor(($panjangData*5/8))+1 ; $i < floor(($panjangData*6/8)); $i++) { 
+    $nomor = $i+1;
+    $asset = array_keys($data)[$i];
+    $last = $data[$asset]['last'];
+    $high = $data[$asset]['high'];
+    $low = $data[$asset]['low'];
+    $sell = $data[$asset]['sell'];
+    $buy = $data[$asset]['buy'];
+    $msg6 .= "Nomor : ".$nomor."%0aAsset : ".$asset."%0aLast Price : ".$last."%0aHigh 24H : ".$high."%0aLow 24H : ".$low."%0aSell : ".$sell."%0aBuy : ".$buy."%0a%0a";
+}
+for ($i= floor(($panjangData*6/8))+1 ; $i < floor(($panjangData*7/8)); $i++) { 
+    $nomor = $i+1;
+    $asset = array_keys($data)[$i];
+    $last = $data[$asset]['last'];
+    $high = $data[$asset]['high'];
+    $low = $data[$asset]['low'];
+    $sell = $data[$asset]['sell'];
+    $buy = $data[$asset]['buy'];
+    $msg7 .= "Nomor : ".$nomor."%0aAsset : ".$asset."%0aLast Price : ".$last."%0aHigh 24H : ".$high."%0aLow 24H : ".$low."%0aSell : ".$sell."%0aBuy : ".$buy."%0a%0a";
+}
+for ($i= floor(($panjangData*7/8))+1 ; $i < floor(($panjangData*8/8)); $i++) { 
+    $nomor = $i+1;
+    $asset = array_keys($data)[$i];
+    $last = $data[$asset]['last'];
+    $high = $data[$asset]['high'];
+    $low = $data[$asset]['low'];
+    $sell = $data[$asset]['sell'];
+    $buy = $data[$asset]['buy'];
+    $msg8 .= "Nomor : ".$nomor."%0aAsset : ".$asset."%0aLast Price : ".$last."%0aHigh 24H : ".$high."%0aLow 24H : ".$low."%0aSell : ".$sell."%0aBuy : ".$buy."%0a%0a";
+}
 kirimTelegram($msg1);
+kirimTelegram($msg2);
+kirimTelegram($msg3);
+kirimTelegram($msg4);
+kirimTelegram($msg5);
+kirimTelegram($msg6);
+kirimTelegram($msg7);
+kirimTelegram($msg8);
 
 kirimTelegram("halo");
-echo    "<script>
-            document.location.href = 'indodaxAPIxTelegramHomepage.php'
-        </script>";
+// echo $panjangData;
+// echo    "<script>
+//             document.location.href = 'indodaxAPIxTelegramHomepage.php'
+//         </script>";
 ?>
+

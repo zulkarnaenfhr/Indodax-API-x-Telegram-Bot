@@ -7,4 +7,7 @@
     // echo array_keys($data);
     print_r(array_keys($data)[0]);
 
+    $banyak = count($data);
+    echo "banyaknya : ".$banyak;
+
 ?>
