@@ -2,8 +2,19 @@
     $sumber = "https://indodax.com/api/tickers";
     $konten = file_get_contents($sumber);
     $data = json_decode($konten, true);
-   
 ?>
+
+<?php 
+    // pagination
+    $page = !isset($_GET['page']) ? 1 : $_GET['page'];
+    $limitData = 10;
+    $offset = ($page - 1) * $limitData; 
+    $datanya = $data['tickers'];
+    $total_coin = count($data['tickers']);
+    $total_page = ceil($total_coin / $limitData);
+    $final =array_splice($datanya,$offset,$limitData);
+?>
+
 
 <!doctype html>
 <html lang="en">
@@ -61,46 +72,56 @@
                         </div>
                     </div>
                     <table class="tableOutput">
-                        <tr>
-                            <th class="tableNomor">No</th>
-                            <th class="tableAsset">Asset</th>
-                            <th class="tableLast">Last Price</th>
-                            <th class="tableHigh">High 24H</th>
-                            <th class="tableLow">Low 24H</th>
-                            <th class="tableLastLow">Sell</th>
-                            <th class="tableLastHigh">Buy</th>
-                            
-                        </tr>
+                        <div class="pagination">
+                            <?php for($x = 1; $x <= $total_page; $x++): ?>
+                                <a id="active<?php echo $x?>" href='cekPagination.php?page=<?php echo $x; ?>'>
+                                    <?php echo $x; ?>
+                                </a>
+                            <?php endfor; ?>
+                        </div>
+                        <thead>
+                            <tr>
+                                <th class="tableNomor">No</th>
+                                <th class="tableAsset">Asset</th>
+                                <th class="tableLast">Last Price</th>
+                                <th class="tableHigh">High 24H</th>
+                                <th class="tableLow">Low 24H</th>
+                                <th class="tableLastLow">Sell</th>
+                                <th class="tableLastHigh">Buy</th>
+                            </tr>
+                        </thead>
                         <?php 
-                            $nomor = 1;
-                            foreach($data['tickers'] as $row => $value){
+                            $nomor = $offset+1;
+                            foreach($final as $row => $value){
                         ?>
-                        <tr>
-                            <th class="tableBawah">
-                                <?php echo $nomor++ ?>
-                            </th>
-                            <th class="tableBawah">
-                                <?php echo $row?>
-                            </th>
-                            <th class="tableBawah">
-                                <?php echo $value['last'] ?>
-                            </th>
-                            <th class="tableBawah">
-                                <?php echo $value['high'] ?>
-                            </th>
-                            <th class="tableBawah">
-                                <?php echo $value['low'] ?>
-                            </th>
-                            <th class="tableBawah">
-                                <?php echo $value['sell'] ?>
-                            </th>
-                            <th class="tableBawah">
-                                <?php echo $value['buy'] ?>
-                            </th>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th class="tableBawah">
+                                    <?php echo $nomor++ ?>
+                                </th>
+                                <th class="tableBawah">
+                                    <?php echo $row?>
+                                </th>
+                                <th class="tableBawah">
+                                    <?php echo $value['last'] ?>
+                                </th>
+                                <th class="tableBawah">
+                                    <?php echo $value['high'] ?>
+                                </th>
+                                <th class="tableBawah">
+                                    <?php echo $value['low'] ?>
+                                </th>
+                                <th class="tableBawah">
+                                    <?php echo $value['sell'] ?>
+                                </th>
+                                <th class="tableBawah">
+                                    <?php echo $value['buy'] ?>
+                                </th>
+                            </tr>
+                        </tbody>
                         <?php 
                             }
-                        ?>
+                        ?>        
                     </table>
                 </div>
             </div>
@@ -111,6 +132,14 @@
     </main>
 
     <!-- Optional JavaScript; choose one of the two! -->
+
+    <?php 
+        $page = !isset($_GET['page']) ? 1 : $_GET['page'];
+    ?>
+    <script>
+        var x = document.getElementById("active<?php echo $page?>");
+        x.classList.add("active");
+    </script>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
