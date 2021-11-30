@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -27,7 +26,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a id="navbar-menu" class="nav-link active" aria-current="page" href="sendNotificationMaster.php">Message status bot
+                        <a id="navbar-menu" class="nav-link active" aria-current="page"
+                            href="sendNotificationMaster.php">Message status bot
                             telegram</a>
                     </li>
                 </ul>
@@ -49,7 +49,7 @@
                             </p>
                         </div>
                         <div class="col-6 indicatorRightSection">
-                            <a href="bigBonxTelegramHomepage.php">
+                            <a href="indodaxAPIxTelegramHomepage.php">
                                 <button class="spaceCaptButton">Back To HomePage</button>
                             </a>
                         </div>
@@ -59,62 +59,55 @@
                         <script>
                             let htmlJudulSection = document.getElementById("tablenya");
                             let html = '';
-                            fetch('https://api.bingbon.com/api/v1/market/symbols').then(function (response) {
+                            fetch('https://indodax.com/api/tickers').then(function (response) {
                                 return response.json();
                             }).then(function (data) {
                                 let htmlJudul = `<tr class="tableJudul">
                                                     <th class="tableNomor">No</th>
                                                     <th class="tableAsset">Asset</th>
-                                                    <th class="tablePair">Pair</th>
-                                                    <th class="tableLast">Last Price</th>
-                                                    <th class="tableHigh">High</th>
-                                                    <th class="tableLow">Low</th>
-                                                    <th class="tableLastLow">H-Last</th>
-                                                    <th class="tableLastHigh">Last-L</th>
+                                                    <th class="tableLastPrice">Last Price</th>
+                                                    <th class="tableHigh">High 24H</th>
+                                                    <th class="tableLow">Low 24H</th>
+                                                    <th class="tableSell">Sell</th>
+                                                    <th class="tableBuy">Buy</th>
                                                 </tr>`
                                 html += htmlJudul
-                                for (let i = 1; i < Object.keys(data.data.result).length; i++) {
+                                for (let i = 0; i < Object.keys(data.tickers).length; i++) {
                                     let htmlFunction = `<tr>
                                                             <th class="tableBawah tableNomor" id="tableNomor${i}"></th>
                                                             <th class="tableBawah tableAsset" id="tableAsset${i}"></th>
-                                                            <th class="tableBawah tablePair" id="tablePair${i}"></th>
-                                                            <th class="tableBawah tableLast" id="tableLast${i}"></th>
+                                                            <th class="tableBawah tableLastPrice" id="tableLastPrice${i}"></th>
                                                             <th class="tableBawah tableHigh" id="tableHigh${i}"></th>
                                                             <th class="tableBawah tableLow" id="tableLow${i}"></th>
-                                                            <th class="tableBawah tableLastLow" id="tableLastLow${i}"></th>
-                                                            <th class="tableBawah tableLastHigh" id="tableLastHigh${i}"></th>
+                                                            <th class="tableBawah tableSell" id="tableSell${i}"></th>
+                                                            <th class="tableBawah tableBuy" id="tableBuy${i}"></th>
                                                         </tr>`;
                                     html += htmlFunction;
                                     htmlJudulSection.innerHTML = html;
                                 }
                                 setInterval(function () {
-                                    fetch('https://api.bingbon.com/api/v1/market/symbols').then(function (response) {
+                                    fetch('https://indodax.com/api/tickers').then(function (response) {
                                         return response.json()
                                     }).then(function (data) {
-                                        for (let i = 1; i < Object.keys(data.data.result).length; i++) {
+                                        var names = Object.getOwnPropertyNames(data.tickers);
+                                        for (let i = 0; i < Object.keys(data.tickers).length; i++) {
                                             tableNomor = document.getElementById("tableNomor" + i)
                                             tableAsset = document.getElementById("tableAsset" + i)
-                                            tablePair = document.getElementById("tablePair" + i)
-                                            tableLast = document.getElementById("tableLast" + i)
+                                            tableLastPrice = document.getElementById("tableLastPrice" + i)
                                             tableHigh = document.getElementById("tableHigh" + i)
                                             tableLow = document.getElementById("tableLow" + i)
-                                            tableLastLow = document.getElementById("tableLastLow" + i)
-                                            tableLastHigh = document.getElementById("tableLastHigh" + i)
+                                            tableSell = document.getElementById("tableSell" + i)
+                                            tableBuy = document.getElementById("tableBuy" + i)
 
-                                            let isLastHigh = data.data.result[i].high - data.data.result[i].last_price;
-                                            isLastHigh = isLastHigh.toFixed(4);
+                                            var nomorAsli = i + 1;
 
-                                            let isLastLow = data.data.result[i].last_price - data.data.result[i].low;
-                                            isLastLow = isLastLow.toFixed(4);
-
-                                            tableNomor.innerHTML = `${i}`;
-                                            tableAsset.innerHTML = `${data.data.result[i].base_currency}`;
-                                            tablePair.innerHTML = `${data.data.result[i].quote_currency}`;
-                                            tableLast.innerHTML = `${data.data.result[i].last_price}`;
-                                            tableHigh.innerHTML = `${data.data.result[i].high}`;
-                                            tableLow.innerHTML = `${data.data.result[i].low}`;
-                                            tableLastLow.innerHTML = isLastHigh;
-                                            tableLastHigh.innerHTML = isLastLow;
+                                            tableNomor.innerHTML = `${nomorAsli}`;
+                                            tableAsset.innerHTML = `${names[i]}`;
+                                            tableLastPrice.innerHTML = `${data['tickers'][names[i]]['last']}`;
+                                            tableHigh.innerHTML = `${data['tickers'][names[i]]['high']}`
+                                            tableLow.innerHTML = `${data['tickers'][names[i]]['low']}`
+                                            tableSell.innerHTML = `${data['tickers'][names[i]]['sell']}`
+                                            tableBuy.innerHTML = `${data['tickers'][names[i]]['buy']}`
                                         }
                                     })
                                 }, 1000);

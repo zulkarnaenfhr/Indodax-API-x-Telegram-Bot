@@ -2,8 +2,9 @@
     $sumber = "https://indodax.com/api/tickers";
     $konten = file_get_contents($sumber);
     $data = json_decode($konten, true);
+    $data = $data['tickers'];
 
-    foreach ($data as $value){
-        foreach ($value as $value)
-    }
+    // echo array_keys($data);
+    print_r(array_keys($data)[0]);
+
 ?>

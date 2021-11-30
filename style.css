@@ -65,7 +65,7 @@ table tr:nth-child(odd) th {
 .tablePair {
     width: 100px;
 }
-.tableLast {
+.tableLastPrice {
     width: 200px;
 }
 .tableHigh {

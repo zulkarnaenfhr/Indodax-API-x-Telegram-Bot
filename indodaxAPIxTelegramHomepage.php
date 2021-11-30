@@ -15,6 +15,10 @@
     $final =array_splice($datanya,$offset,$limitData);
 ?>
 
+<?php 
+    header( "refresh:10" );
+?>
+
 
 <!doctype html>
 <html lang="en">
@@ -72,6 +76,7 @@
                             </a>
                         </div>
                     </div>
+                    <div id="Timer"></div>
                     <table class="tableOutput">
                         <thead>
                             <tr>
