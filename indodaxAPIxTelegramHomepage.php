@@ -78,46 +78,42 @@
                     </div>
                     <div id="Timer"></div>
                     <table class="tableOutput">
-                        <thead>
-                            <tr>
-                                <th class="tableNomor">No</th>
-                                <th class="tableAsset">Asset</th>
-                                <th class="tableLast">Last Price</th>
-                                <th class="tableHigh">High 24H</th>
-                                <th class="tableLow">Low 24H</th>
-                                <th class="tableLastLow">Sell</th>
-                                <th class="tableLastHigh">Buy</th>
-                            </tr>
-                        </thead>
+                        <tr>
+                            <th class="tableNomor">No</th>
+                            <th class="tableAsset">Asset</th>
+                            <th class="tableLast">Last Price</th>
+                            <th class="tableHigh">High 24H</th>
+                            <th class="tableLow">Low 24H</th>
+                            <th class="tableLastLow">Sell</th>
+                            <th class="tableLastHigh">Buy</th>
+                        </tr>
                         <?php 
                             $nomor = $offset+1;
                             foreach($final as $row => $value){
                         ?>
-                        <tbody>
-                            <tr>
-                                <th class="tableBawah">
-                                    <?php echo $nomor++ ?>
-                                </th>
-                                <th class="tableBawah">
-                                    <?php echo $row?>
-                                </th>
-                                <th class="tableBawah">
-                                    <?php echo $value['last'] ?>
-                                </th>
-                                <th class="tableBawah">
-                                    <?php echo $value['high'] ?>
-                                </th>
-                                <th class="tableBawah">
-                                    <?php echo $value['low'] ?>
-                                </th>
-                                <th class="tableBawah">
-                                    <?php echo $value['sell'] ?>
-                                </th>
-                                <th class="tableBawah">
-                                    <?php echo $value['buy'] ?>
-                                </th>
-                            </tr>
-                        </tbody>
+                        <tr>
+                            <th class="tableBawah">
+                                <?php echo $nomor++ ?>
+                            </th>
+                            <th class="tableBawah">
+                                <?php echo $row?>
+                            </th>
+                            <th class="tableBawah">
+                                <?php echo $value['last'] ?>
+                            </th>
+                            <th class="tableBawah">
+                                <?php echo $value['high'] ?>
+                            </th>
+                            <th class="tableBawah">
+                                <?php echo $value['low'] ?>
+                            </th>
+                            <th class="tableBawah">
+                                <?php echo $value['sell'] ?>
+                            </th>
+                            <th class="tableBawah">
+                                <?php echo $value['buy'] ?>
+                            </th>
+                        </tr>
                         <?php 
                             }
                         ?>
@@ -152,4 +148,3 @@
 </body>
 
 </html>
-
