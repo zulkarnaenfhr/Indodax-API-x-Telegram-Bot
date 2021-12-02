@@ -8,11 +8,11 @@
     // pagination
     $page = !isset($_GET['page']) ? 1 : $_GET['page'];
     $limitData = 10;
-    $offset = ($page - 1) * $limitData; 
+    $startData_InPagination = ($page - 1) * $limitData; 
     $datanya = $data['tickers'];
     $total_coin = count($data['tickers']);
     $total_page = ceil($total_coin / $limitData);
-    $final =array_splice($datanya,$offset,$limitData);
+    $final =array_splice($datanya,$startData_InPagination,$limitData);
     $limitPagination=2;
     $paginationRows=5;
     $endPagination= $total_page - $limitPagination;
@@ -91,9 +91,11 @@
                             <th class="tableLow">Low 24H</th>
                             <th class="tableLastLow">Sell</th>
                             <th class="tableLastHigh">Buy</th>
+                            <th class="tableIsHigh">High-Last</th>
+                            <th class="tableIsLow">Last-Low</th>
                         </tr>
                         <?php 
-                            $nomor = $offset+1;
+                            $nomor = $startData_InPagination+1;
                             foreach($final as $row => $value){
                         ?>
                         <tr>
@@ -117,6 +119,18 @@
                             </th>
                             <th class="tableBawah">
                                 <?php echo $value['buy'] ?>
+                            </th>
+                            <th class="tableIsHigh">
+                                <?php 
+                                    $isLow = ($value['high'] - $value['last']);
+                                    echo $isLow;
+                                ?>
+                            </th>
+                            <th class="tableIsLow">
+                                <?php 
+                                    $isHigh = ($value['last'] - $value['low']);
+                                    echo $isHigh;
+                                ?>
                             </th>
                         </tr>
                         <?php 
