@@ -3,7 +3,6 @@
     $konten = file_get_contents($sumber);
     $data = json_decode($konten, true);
 
-    require "sendNotificationRecom.php";
 ?>
 
 <?php 
@@ -106,6 +105,7 @@
                                 <th class="tableLastHigh">Buy</th>
                                 <th class="tableIsHigh">High-Last</th>
                                 <th class="tableIsLow">Last-Low</th>
+                                <th class="tableStatus">Status</th>
                             </tr>
                             <?php 
                             $nomor = $startData_InPagination+1;
@@ -136,25 +136,40 @@
                                 </th>
                                 <th class="tableIsHigh">
                                     <?php 
-                                    $isLow = ($value['high'] - $value['last']);
-                                    // $msgRecomendtoBuy = "";
-                                    
-                                    // $msgRecomendtoSell = "";
-                                    // if ($isLow == 0) {
-                                    //     sendRecomendtoSell($msgRecomendtoSell,$row,$value['high'],$value['sell']);
-                                    // }
-                                    echo $isLow;
+                                    $isHigh = ($value['high'] - $value['last']);
+
+                                    echo $isHigh;
                                 ?>
                                 </th>
                                 <th class="tableIsLow">
                                     <?php 
-                                    $isHigh = ($value['last'] - $value['low']);
-                                    // if ($isHigh == 0) {
-                                    //     sendRecomendtoBuy($msgRecomendtoBuy,$row,$value['low'],$value['buy']);
-                                    // }
-                                    echo $isHigh;
+                                    $isLow = ($value['last'] - $value['low']);
+
+                                    echo $isLow;
                                 ?>
                                 </th>
+                                <?php 
+                                    $batasAmanBuy = $value['low'] * 1/100;
+                                    $batasAmanSell = $value['high'] * 1/100;
+
+                                    if ($value['last'] > 1 && ($value['high'] - $value['last']) < $batasAmanSell) { ?>
+                                        <th style="background-color: red; color: red">
+                                            .
+                                        </th>
+                                    <?php } else if ($value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy) { ?>
+                                        <th style="background-color: green; color: green">
+                                            .
+                                        </th>
+                                    <?php } else if ($isHigh == $isLow && $value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy && ($value['high'] - $value['last']) < $batasAmanSell) {?>
+                                        <th style="background-color: cadetblue; color: cadetblue">
+                                            .
+                                        </th>
+                                    <?php } else { ?>
+                                        <th style="background-color: yellow; color: yellow">
+                                            .
+                                        </th>
+                                    <?php }
+                                ?>
                             </tr>
                             <?php 
                             }
@@ -163,9 +178,9 @@
                         <div class="pagination">
                             <?php if($page > $limitPagination+1 && $page < $endPagination) {?>
                             <?php 
-            $start_pagination = ($page - $limitPagination);
-            $end_pagination = ($page + $limitPagination);
-        ?>
+                                $start_pagination = ($page - $limitPagination);
+                                $end_pagination = ($page + $limitPagination);
+                            ?>
                             <a id="active<?php echo $page-1?>" href='?page=<?php echo $page-1; ?>'>
                                 prev
                             </a>

@@ -95,20 +95,18 @@
                         </div>
                         <div id="Timer"></div>
                         <table class="tableOutput">
-                            <thead>
-                                <tr>
-                                    <th class="tableNomor">No</th>
-                                    <th class="tableAsset">Asset</th>
-                                    <th class="tableLast">Last Price</th>
-                                    <th class="tableHigh">High 24H</th>
-                                    <th class="tableLow">Low 24H</th>
-                                    <th class="tableLastLow">Sell</th>
-                                    <th class="tableLastHigh">Buy</th>
-                                    <th class="tableIsHigh">High-Last</th>
-                                    <th class="tableIsLow">Last-Low</th>
-                                </tr>
-                            </thead>
-                            
+                            <tr>
+                                <th class="tableNomor">No</th>
+                                <th class="tableAsset">Asset</th>
+                                <th class="tableLast">Last Price</th>
+                                <th class="tableHigh">High 24H</th>
+                                <th class="tableLow">Low 24H</th>
+                                <th class="tableLastLow">Sell</th>
+                                <th class="tableLastHigh">Buy</th>
+                                <th class="tableIsHigh">High-Last</th>
+                                <th class="tableIsLow">Last-Low</th>
+                                <th class="tableStatus">Status</th>
+                            </tr>
                             <?php 
                             $nomor = $startData_InPagination+1;
                             $nomorBot = 0;
@@ -136,54 +134,66 @@
                                 <th class="tableBawah">
                                     <?php echo $value['buy'] ?>
                                 </th>
+                                <th class="tableIsHigh">
+                                    <?php 
+                                    $isHigh = ($value['high'] - $value['last']);
+
+                                    echo $isHigh;
+                                ?>
+                                </th>
+                                <th class="tableIsLow">
+                                    <?php 
+                                    $isLow = ($value['last'] - $value['low']);
+
+                                    echo $isLow;
+                                ?>
+                                </th>
                                 <?php 
+                                    $batasAmanBuy = $value['low'] * 1/100;
                                     $batasAmanSell = $value['high'] * 1/100;
-                                    $batasAmanSell = $batasAmanSell;
 
-                                    if ($value['last'] > 1 && ($value['high'] - $value['last']) < $batasAmanSell) { ?>
-                                        <th class="tableIsHigh" style="background-color: red;">
-                                            <?php 
-                                                $isLow = ($value['high'] - $value['last']);
+                                    if ($isLow < $isHigh) {
+                                        $status = 1;
+                                    }else if ($isHigh < $isLow) {
+                                        $status = 2;
+                                    }else if ($isLow == $isHigh){
+                                        $status = 0;
+                                    }
 
-                                                echo $isLow;
-                                            ?>
-                                        </th>
+                                    if ($status == 1) { 
+                                        if($value['last'] > 1 && ($value['high'] - $value['last']) < $batasAmanSell) { ?>
+                                            <th style="background-color: red; color: red">
+                                                .
+                                            </th>
+                                            <?php
+                                        } else { ?>
+                                            <th style="background-color: yellow; color: yellow">
+                                                .
+                                            </th>
+                                        <?php
+                                        }
+                                        ?>
                                     <?php    
-                                    } else{ ?>
-                                        <th class="tableIsHigh">
-                                            <?php 
-                                                $isLow = ($value['high'] - $value['last']);
-
-                                                echo $isLow;
-                                            ?>
+                                    } else if ($status == 2){ 
+                                        if($value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy){?>
+                                            <th style="background-color: green; color: green">
+                                                .
+                                            </th>
+                                        <?php
+                                        } else { ?>
+                                            <th style="background-color: yellow; color: yellow">
+                                                .
+                                            </th>
+                                        <?php }
+                                        ?>  
+                                    <?php
+                                    } else if ($status == 0){ ?>
+                                        <th style="background-color: yellow; color: yellow">
+                                            .
                                         </th>
                                     <?php
-                                    }
-
-                                    $batasAmanBuy = $value['low'] * 1/100;
-                                    $batasAmanBuy = $batasAmanBuy;
-
-                                    if ($value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy) { ?>
-                                        <th class="tableIsLow" style="background-color: green;">
-                                            <?php 
-                                                $isHigh = ($value['last'] - $value['low']);
-
-                                                echo $isHigh;
-                                            ?>
-                                        </th>
-                                    <?php    
-                                    } else { ?>
-                                        <th class="tableIsLow">
-                                            <?php 
-                                                $isHigh = ($value['last'] - $value['low']);
-
-                                                echo $isHigh;
-                                            ?>
-                                        </th>
-                                    <?php    
-                                    }
+                                    } 
                                 ?>
-                                
                             </tr>
                             <?php 
                             }
@@ -218,10 +228,10 @@
                             <a id="active<?php echo $page+1?>" href='?page=<?php echo $page+1; ?>'>
                                 next
                             </a>
-                            <?php } elseif($page > ($endPagination-1)) { ?>
+                        <?php } elseif($page > ($endPagination-1)) { ?>
                             <?php 
-                                $start_inEndPagination = ($total_page - 5);    
-                            ?>
+            $start_inEndPagination = ($total_page - 5);    
+        ?>
                             <?php if($page == $lastPage) { ?>
                             <a id="active<?php echo $page-1?>" href='?page=<?php echo $page-1; ?>'>
                                 prev
