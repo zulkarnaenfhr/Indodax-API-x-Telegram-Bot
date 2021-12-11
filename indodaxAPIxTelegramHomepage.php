@@ -8,7 +8,7 @@
 <?php 
     // pagination
     $page = !isset($_GET['page']) ? 1 : $_GET['page'];
-    $limitData = 10;
+    $limitData = 15;
     $startData_InPagination = ($page - 1) * $limitData; 
     $datanya = $data['tickers'];
     $total_coin = count($data['tickers']);
@@ -22,7 +22,7 @@
 ?>
 
 <?php 
-    header( "refresh:10" );
+    header( "refresh:30" );
 ?>
 
 <!doctype html>
@@ -40,13 +40,19 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous">
 
-        <!-- link css navbar -->
+        <!-- link gasp3 //buat animasi di home section-->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TimelineMax.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+
+        <!-- link css semb -->
         <link rel="stylesheet" href="style.css">
+
         <title>Homepage Indodax API Website</title>
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav id="navbarContainer" class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a id="homeBrand" class="navbar-brand" href="">Indodax API x Kelompok 7</a>
                 <button
@@ -62,11 +68,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a
-                                id="navbar-menu"
-                                class="nav-link active"
-                                aria-current="page"
-                                href="sendNotificationMaster.php">Message status bot telegram</a>
+                            <p class="time-Container">
+                                <span class="liveMarket-Time" id="date"></span>
+                                <span class="liveMarket-Time" id="month"></span>
+                                <span class="liveMarket-Time" id="year"></span>,
+                                <span class="liveMarket-Time" id="hours"></span>.<span class="liveMarket-Time" id="minute"></span>.<span class="liveMarket-Time" id="second"></span>
+                            </p>
                         </li>
                     </ul>
                 </div>
@@ -77,22 +84,7 @@
             <section id="liveMarket">
                 <div class="container-fluid">
                     <div class="container">
-                        <p class="liveMarket-Title">Cryptocurrency x Indodax API Homepage</p>
-                        <div class="row">
-                            <div class="col-6 indicatorLeftSection">
-                                <p>
-                                    <span class="liveMarket-Time" id="date"></span>
-                                    <span class="liveMarket-Time" id="month"></span>
-                                    <span class="liveMarket-Time" id="year"></span>,
-                                    <span class="liveMarket-Time" id="hours"></span>.<span class="liveMarket-Time" id="minute"></span>.<span class="liveMarket-Time" id="second"></span>
-                                </p>
-                            </div>
-                            <div class="col-6 indicatorRightSection">
-                                <a href="liveCryptoMarket.html">
-                                    <button class="spaceCaptButton">View Live Market</button>
-                                </a>
-                            </div>
-                        </div>
+                        <p class="liveMarket-Title">Cryptocurrency x Indodax API Monitoring</p>
                         <div id="Timer"></div>
                         <table class="tableOutput">
                             <tr>
@@ -120,32 +112,32 @@
                                     <?php echo $row?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo $value['last'] ?>
+                                    <?php echo number_format($value['last']) ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo $value['high'] ?>
+                                    <?php echo number_format($value['high']) ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo $value['low'] ?>
+                                    <?php echo number_format($value['low']) ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo $value['sell'] ?>
+                                    <?php echo number_format($value['sell']) ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo $value['buy'] ?>
+                                    <?php echo number_format($value['buy']) ?>
                                 </th>
                                 <th class="tableIsHigh">
                                     <?php 
                                     $isHigh = ($value['high'] - $value['last']);
 
-                                    echo $isHigh;
+                                    echo number_format($isHigh);
                                 ?>
                                 </th>
                                 <th class="tableIsLow">
                                     <?php 
                                     $isLow = ($value['last'] - $value['low']);
 
-                                    echo $isLow;
+                                    echo number_format($isLow);
                                 ?>
                                 </th>
                                 <?php 
@@ -153,22 +145,22 @@
                                     $batasAmanSell = $value['high'] * 1/100;
 
                                     if ($value['last'] > 1 && ($value['high'] - $value['last']) < $batasAmanSell) { ?>
-                                        <th style="background-color: red; color: red">
-                                            .
-                                        </th>
-                                    <?php } else if ($value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy) { ?>
-                                        <th style="background-color: green; color: green">
-                                            .
-                                        </th>
-                                    <?php } else if ($isHigh == $isLow && $value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy && ($value['high'] - $value['last']) < $batasAmanSell) {?>
-                                        <th style="background-color: cadetblue; color: cadetblue">
-                                            .
-                                        </th>
-                                    <?php } else { ?>
-                                        <th style="background-color: yellow; color: yellow">
-                                            .
-                                        </th>
-                                    <?php }
+                                <th style="background-color: red; color: red">
+                                    .
+                                </th>
+                            <?php } else if ($value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy) { ?>
+                                <th style="background-color: green; color: green">
+                                    .
+                                </th>
+                            <?php } else if ($isHigh == $isLow && $value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy && ($value['high'] - $value['last']) < $batasAmanSell) {?>
+                                <th style="background-color: cadetblue; color: cadetblue">
+                                    .
+                                </th>
+                            <?php } else { ?>
+                                <th style="background-color: yellow; color: yellow">
+                                    .
+                                </th>
+                                <?php }
                                 ?>
                             </tr>
                             <?php 
@@ -285,13 +277,38 @@
                             <?php } ?>
                             <?php } ?>
                         </div>
+                        <div class="row footernya">
+                            <div class="col-4">
+                                <ul class="penjelasanWarna">
+                                    <p class="judulPenjelasanWarna">Penjelasan Warna :</p>
+                                    <li>
+                                        <div class="penjelasanWarna-container">
+                                            <div class="colorContainerSkip"></div>
+                                            <p>Bisa Menjadi WatchList</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="penjelasanWarna-container">
+                                            <div class="colorContainerSell"></div>
+                                            <p>direkomendasikan untuk dijual</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="penjelasanWarna-container">
+                                            <div class="colorContainerBuy"></div>
+                                            <p>direkomendasikan untuk dibeli</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-8" >
+                                <p class="textFooter">Design and Developed by
+                                    <span>SpaceCapt Tech Industry</span>
+                                    @2021</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
-            <section id="footer">
-                <p class="textFooter">Design and Developed by
-                    <span>SpaceCapt Tech Industry</span>
-                    @2021</p>
             </section>
         </main>
 

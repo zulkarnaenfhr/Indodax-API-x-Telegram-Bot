@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 /* font-family: 'Outfit', sans-serif; */
 
+#navbarContainer {
+    margin-top: -0.7rem;
+}
+
 #homeBrand {
     font-family: "Outfit", sans-serif;
     font-weight: 700;
@@ -25,6 +29,11 @@
 .liveMarket-Title {
     font-family: "Outfit", sans-serif;
     font-size: 27px;
+    margin-top: -2rem;
+}
+
+.time-Container {
+    padding-top: 2rem;
 }
 
 .liveMarket-Time {
@@ -46,6 +55,7 @@ table {
     text-align: center;
     width: 100%;
 }
+
 
 .tableOutput tr th {
     border: 1px solid black;
@@ -137,4 +147,49 @@ table tr:nth-child(odd) th {
 .pagination a:last-child {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+.footernya{
+    margin-top: 1rem;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.judulPenjelasanWarna{
+    color: red;
+}
+
+.penjelasanWarna{
+    list-style-type: none;
+}
+
+.penjelasanWarna li{
+    margin-top: -0.8rem;
+}
+
+.penjelasanWarna-container {
+    display: inline-flex;
+}
+
+.penjelasanWarna-container p{
+    padding-left: 1rem;
+}
+
+.colorContainerSkip {
+    height: 20px;
+    width: 20px;
+    background-color: yellow;
+}
+
+.colorContainerSell {
+    height: 20px;
+    width: 20px;
+    background-color: red;
+}
+
+.colorContainerBuy {
+    height: 20px;
+    width: 20px;
+    background-color: green;
 }
