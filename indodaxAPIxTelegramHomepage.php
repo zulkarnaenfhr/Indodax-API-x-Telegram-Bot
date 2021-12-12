@@ -112,32 +112,69 @@
                                     <?php echo $row?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo number_format($value['last']) ?>
+                                    <?php 
+                                        if ($value['last'] < 2) {
+                                            echo number_format($value['last'],7,",",".");
+                                        } else {
+                                            echo number_format($value['last']); 
+                                        }
+                                    ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo number_format($value['high']) ?>
+                                    <?php 
+                                        if ($value['high'] < 2) {
+                                            echo number_format($value['high'],7,",",".");
+                                        } else {
+                                            echo number_format($value['high']); 
+                                        }
+                                    ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo number_format($value['low']) ?>
+                                    <?php 
+                                        if ($value['low'] < 2) {
+                                            echo number_format($value['low'],7,",",".");
+                                        } else {
+                                            echo number_format($value['low']); 
+                                        }
+                                    ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo number_format($value['sell']) ?>
+                                    <?php 
+                                        if ($value['sell'] < 2) {
+                                            echo number_format($value['sell'],7,",",".");
+                                        } else {
+                                            echo number_format($value['sell']); 
+                                        }
+                                    ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php echo number_format($value['buy']) ?>
+                                    <?php 
+                                        if ($value['buy'] < 2) {
+                                            echo number_format($value['buy'],7,",",".");
+                                        } else {
+                                            echo number_format($value['buy']); 
+                                        }
+                                    ?>
                                 </th>
                                 <th class="tableIsHigh">
                                     <?php 
                                     $isHigh = ($value['high'] - $value['last']);
-
-                                    echo number_format($isHigh);
+                                    
+                                    if ($isHigh < 2) {
+                                        echo number_format($isHigh,7,",",".");
+                                    } else {
+                                        echo number_format($isHigh);
+                                    }
                                 ?>
                                 </th>
                                 <th class="tableIsLow">
                                     <?php 
                                     $isLow = ($value['last'] - $value['low']);
-
-                                    echo number_format($isLow);
+                                    if ($isLow < 2) {
+                                        echo number_format($isLow,7,",",".");
+                                    }else {
+                                        echo number_format($isLow);
+                                    }
                                 ?>
                                 </th>
                                 <?php 
