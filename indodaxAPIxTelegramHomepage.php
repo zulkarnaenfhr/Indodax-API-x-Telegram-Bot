@@ -185,24 +185,24 @@
                                 <th style="background-color: red; color: red">
                                     .
                                 </th>
-                            <?php } else if (($value['last'] - $value['low']) < $batasAmanBuy) { ?>
-                                <th style="background-color: green; color: green">
-                                    .
-                                </th>
-                            <?php } else if ($isHigh == $isLow && ($value['last'] - $value['low']) < $batasAmanBuy && ($value['high'] - $value['last']) < $batasAmanSell) {?>
-                                <th style="background-color: cadetblue; color: cadetblue">
-                                    .
-                                </th>
-                            <?php } else { ?>
-                                <th style="background-color: yellow; color: yellow">
-                                    .
-                                </th>
-                                <?php }
-                                ?>
-                            </tr>
-                            <?php 
-                            }
-                        ?>
+                                <?php } else if (($value['last'] - $value['low']) < $batasAmanBuy) { ?>
+                                    <th style="background-color: green; color: green">
+                                        .
+                                    </th>
+                                <?php } else if ($isHigh == $isLow && ($value['last'] - $value['low']) < $batasAmanBuy && ($value['high'] - $value['last']) < $batasAmanSell) {?>
+                                    <th style="background-color: cadetblue; color: cadetblue">
+                                        .
+                                    </th>
+                                <?php } else { ?>
+                                    <th style="background-color: yellow; color: yellow">
+                                        .
+                                    </th>
+                                    <?php }
+                                    ?>
+                                </tr>
+                                <?php 
+                                }
+                            ?>
                         </table>
                         <div class="pagination">
                             <?php if($page > $limitPagination+1 && $page < $endPagination) {?>
