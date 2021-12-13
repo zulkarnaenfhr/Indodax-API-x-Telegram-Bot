@@ -181,15 +181,15 @@
                                     $batasAmanBuy = $value['low'] * 1/100;
                                     $batasAmanSell = $value['high'] * 1/100;
 
-                                    if ($value['last'] > 1 && ($value['high'] - $value['last']) < $batasAmanSell) { ?>
+                                    if (($value['high'] - $value['last']) < $batasAmanSell) { ?>
                                 <th style="background-color: red; color: red">
                                     .
                                 </th>
-                            <?php } else if ($value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy) { ?>
+                            <?php } else if (($value['last'] - $value['low']) < $batasAmanBuy) { ?>
                                 <th style="background-color: green; color: green">
                                     .
                                 </th>
-                            <?php } else if ($isHigh == $isLow && $value['last'] > 1 && ($value['last'] - $value['low']) < $batasAmanBuy && ($value['high'] - $value['last']) < $batasAmanSell) {?>
+                            <?php } else if ($isHigh == $isLow && ($value['last'] - $value['low']) < $batasAmanBuy && ($value['high'] - $value['last']) < $batasAmanSell) {?>
                                 <th style="background-color: cadetblue; color: cadetblue">
                                     .
                                 </th>
@@ -235,8 +235,8 @@
                             </a>
                         <?php } elseif($page > ($endPagination-1)) { ?>
                             <?php 
-            $start_inEndPagination = ($total_page - 5);    
-        ?>
+                                $start_inEndPagination = ($total_page - 5);    
+                            ?>
                             <?php if($page == $lastPage) { ?>
                             <a id="active<?php echo $page-1?>" href='?page=<?php echo $page-1; ?>'>
                                 prev
