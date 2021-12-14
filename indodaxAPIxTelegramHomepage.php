@@ -103,7 +103,6 @@
                             $nomor = $startData_InPagination+1;
                             $nomorBot = 0;
                             foreach($final as $row => $value){
-                            
                         ?>
                         
                             <tr>
