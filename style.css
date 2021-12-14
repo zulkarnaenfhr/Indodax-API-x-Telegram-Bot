@@ -150,7 +150,7 @@ table tr:nth-child(odd) th {
 }
 
 .footernya{
-    margin-top: 1rem;
+    margin-top: 0.7rem;
     height: 100px;
     display: flex;
     align-items: center;
@@ -192,4 +192,10 @@ table tr:nth-child(odd) th {
     height: 20px;
     width: 20px;
     background-color: green;
+}
+
+.colorContainerSama {
+    height: 20px;
+    width: 20px;
+    background-color: cadetblue;
 }

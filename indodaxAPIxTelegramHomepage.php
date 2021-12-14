@@ -103,7 +103,9 @@
                             $nomor = $startData_InPagination+1;
                             $nomorBot = 0;
                             foreach($final as $row => $value){
+                            
                         ?>
+                        
                             <tr>
                                 <th class="tableBawah">
                                     <?php echo $nomor++ ?>
@@ -181,11 +183,11 @@
                                     $batasAmanBuy = $value['low'] * 1/100;
                                     $batasAmanSell = $value['high'] * 1/100;
 
-                                    if (($value['high'] - $value['last']) < $batasAmanSell) { ?>
+                                    if ($isHigh < $isLow && ($value['high'] - $value['last']) < $batasAmanSell) { ?>
                                 <th style="background-color: red; color: red">
                                     .
                                 </th>
-                                <?php } else if (($value['last'] - $value['low']) < $batasAmanBuy) { ?>
+                                <?php } else if ($isLow < $isHigh && ($value['last'] - $value['low']) < $batasAmanBuy) { ?>
                                     <th style="background-color: green; color: green">
                                         .
                                     </th>
@@ -315,7 +317,7 @@
                             <?php } ?>
                         </div>
                         <div class="row footernya">
-                            <div class="col-4">
+                            <div class="col-5">
                                 <ul class="penjelasanWarna">
                                     <p class="judulPenjelasanWarna">Penjelasan Warna :</p>
                                     <li>
@@ -327,18 +329,24 @@
                                     <li>
                                         <div class="penjelasanWarna-container">
                                             <div class="colorContainerSell"></div>
-                                            <p>direkomendasikan untuk dijual</p>
+                                            <p>Direkomendasikan untuk dijual</p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="penjelasanWarna-container">
                                             <div class="colorContainerBuy"></div>
-                                            <p>direkomendasikan untuk dibeli</p>
+                                            <p>Direkomendasikan untuk dibeli</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="penjelasanWarna-container">
+                                            <div class="colorContainerSama"></div>
+                                            <p>Kondisi sama, tidak dapat diprediksi</p>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-8" >
+                            <div class="col-7" >
                                 <p class="textFooter">Design and Developed by
                                     <span>SpaceCapt Tech Industry</span>
                                     @2021</p>
