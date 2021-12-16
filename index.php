@@ -2,7 +2,6 @@
     $sumber = "https://indodax.com/api/tickers";
     $konten = file_get_contents($sumber);
     $data = json_decode($konten, true);
-
 ?>
 
 <?php 
@@ -27,7 +26,6 @@
 
 <!doctype html>
 <html lang="en">
-
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -45,7 +43,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TimelineMax.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
 
-        <!-- link css semb -->
+        <!-- link css -->
         <link rel="stylesheet" href="style.css">
 
         <title>Homepage Indodax API Website</title>
@@ -101,7 +99,6 @@
                             </tr>
                             <?php 
                             $nomor = $startData_InPagination+1;
-                            $nomorBot = 0;
                             foreach($final as $row => $value){
                         ?>
                         
@@ -356,13 +353,9 @@
             </section>
         </main>
 
-        <!-- Optional JavaScript; choose one of the two! -->
-
         <script>
             var x = document.getElementById("active<?php echo $page?>");
-            x
-                .classList
-                .add("active");
+            x.classList.add("active");
         </script>
 
         <!-- Option 1: Bootstrap Bundle with Popper -->
