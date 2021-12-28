@@ -52,7 +52,7 @@
     <body>
         <nav id="navbarContainer" class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a id="homeBrand" class="navbar-brand" href="">Indodax API x Kelompok 7</a>
+                <a id="homeBrand" class="navbar-brand" href="">Cryptocurrency Monitor</a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -101,7 +101,7 @@
                             $nomor = $startData_InPagination+1;
                             foreach($final as $row => $value){
                         ?>
-                        
+
                             <tr>
                                 <th class="tableBawah">
                                     <?php echo $nomor++ ?>
@@ -110,7 +110,7 @@
                                     <?php echo $row?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php 
+                                <?php 
                                         if ($value['last'] < 2) {
                                             echo number_format($value['last'],7,",",".");
                                         } else {
@@ -119,7 +119,7 @@
                                     ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php 
+                                <?php 
                                         if ($value['high'] < 2) {
                                             echo number_format($value['high'],7,",",".");
                                         } else {
@@ -128,7 +128,7 @@
                                     ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php 
+                                <?php 
                                         if ($value['low'] < 2) {
                                             echo number_format($value['low'],7,",",".");
                                         } else {
@@ -137,7 +137,7 @@
                                     ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php 
+                                <?php 
                                         if ($value['sell'] < 2) {
                                             echo number_format($value['sell'],7,",",".");
                                         } else {
@@ -146,7 +146,7 @@
                                     ?>
                                 </th>
                                 <th class="tableBawah">
-                                    <?php 
+                                <?php 
                                         if ($value['buy'] < 2) {
                                             echo number_format($value['buy'],7,",",".");
                                         } else {
@@ -155,7 +155,7 @@
                                     ?>
                                 </th>
                                 <th class="tableIsHigh">
-                                    <?php 
+                                <?php 
                                     $isHigh = ($value['high'] - $value['last']);
                                     
                                     if ($isHigh < 2) {
@@ -166,7 +166,7 @@
                                 ?>
                                 </th>
                                 <th class="tableIsLow">
-                                    <?php 
+                                <?php 
                                     $isLow = ($value['last'] - $value['low']);
                                     if ($isLow < 2) {
                                         echo number_format($isLow,7,",",".");
@@ -183,22 +183,22 @@
                                 <th style="background-color: red; color: red">
                                     .
                                 </th>
-                                <?php } else if ($isLow < $isHigh && ($value['last'] - $value['low']) < $batasAmanBuy) { ?>
-                                    <th style="background-color: green; color: green">
-                                        .
-                                    </th>
-                                <?php } else if ($isHigh == $isLow && ($value['last'] - $value['low']) < $batasAmanBuy && ($value['high'] - $value['last']) < $batasAmanSell) {?>
-                                    <th style="background-color: cadetblue; color: cadetblue">
-                                        .
-                                    </th>
-                                <?php } else { ?>
-                                    <th style="background-color: yellow; color: yellow">
-                                        .
-                                    </th>
-                                    <?php }
+                            <?php } else if ($isLow < $isHigh && ($value['last'] - $value['low']) < $batasAmanBuy) { ?>
+                                <th style="background-color: green; color: green">
+                                    .
+                                </th>
+                            <?php } else if ($isHigh == $isLow && ($value['last'] - $value['low']) < $batasAmanBuy && ($value['high'] - $value['last']) < $batasAmanSell) {?>
+                                <th style="background-color: cadetblue; color: cadetblue">
+                                    .
+                                </th>
+                            <?php } else { ?>
+                                <th style="background-color: yellow; color: yellow">
+                                    .
+                                </th>
+                                <?php }
                                     ?>
-                                </tr>
-                                <?php 
+                            </tr>
+                            <?php 
                                 }
                             ?>
                         </table>
@@ -342,7 +342,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-7" >
+                            <div class="col-7">
                                 <p class="textFooter">Design and Developed by
                                     <span>SpaceCapt Tech Industry</span>
                                     @2021</p>
@@ -355,7 +355,9 @@
 
         <script>
             var x = document.getElementById("active<?php echo $page?>");
-            x.classList.add("active");
+            x
+                .classList
+                .add("active");
         </script>
 
         <!-- Option 1: Bootstrap Bundle with Popper -->
